@@ -1,9 +1,16 @@
 import { useUser } from '../../context/UserContext';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 export default function Header() {
   const { user } = useUser();
-  const message = user.id === true ? `login` : `${user.email}`;
+  const message = user.id ? (
+    `${user.email}`
+  ) : (
+    <>
+      <Link to="/signin">Sign In</Link> or <Link to="/signup">Sign Up</Link>
+    </>
+  );
   return (
     <>
       <div className="header">
