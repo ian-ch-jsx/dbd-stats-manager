@@ -1,0 +1,6 @@
+.perk-row-1,
+.perk-row-2 {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}

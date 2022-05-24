@@ -1,0 +1,26 @@
+body {
+  background-color: #000000;
+  color: #fefefe;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+}
+
+.header {
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  border-bottom: 1px solid #fefefe;
+  padding: 15px;
+  align-self: center;
+  align-items: center;
+}
+
+.header-image {
+  width: 100px;
+  align-self: center;
+}
+
+h1,
+h2 {
+  font-weight: 100;
+}
