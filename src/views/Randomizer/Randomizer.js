@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
-import { getSurvivorPerks } from '../../services/data';
+import { createSurvivorStatsById, getSurvivorPerks } from '../../services/data';
 import PerkCard from '../../components/PerkCard/PerkCard';
 import { randomPerks } from '../../services/utils';
 import './Randomizer.css';
+import { useUser } from '../../context/UserContext';
 
 export default function Randomizer() {
   const [survivorPerk1, setSurvivorPerk1] = useState({});
@@ -12,6 +13,7 @@ export default function Randomizer() {
   const [survivorPerk4, setSurvivorPerk4] = useState({});
   const [perks, setPerks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useUser();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +32,16 @@ export default function Randomizer() {
     randomPerks(perks);
   };
 
+  const handleWin = () => {
+    createSurvivorStatsById({
+      perk_id: survivorPerk1.ID,
+      wins: 3,
+      losses: 3,
+      user_id: user.id,
+    });
+    console.log(survivorPerk1.ID);
+  };
+
   if (loading) return <h1>loading...</h1>;
   return (
     <>
@@ -42,6 +54,8 @@ export default function Randomizer() {
         <PerkCard {...survivorPerk4} />
       </div>
       <button onClick={handleSubmit}>roll</button>
+      <button onClick={handleWin}>Escaped</button>
+      {/* <button onClick={handleLoss}>Sacrificed</button> */}
     </>
   );
 }
