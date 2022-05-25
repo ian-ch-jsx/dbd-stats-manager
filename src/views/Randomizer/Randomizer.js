@@ -1,6 +1,12 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
-import { createSurvivorStatsById, getSurvivorPerks } from '../../services/data';
+import { getSurvivorPerkById, getSurvivorPerks } from '../../services/data';
+import {
+  updateSurvivorStatsById,
+  getSurvivorStatsByUserId,
+  incrementWins,
+  getSurvivorStatsByPerk,
+} from '../../services/stats';
 import PerkCard from '../../components/PerkCard/PerkCard';
 import { randomPerks } from '../../services/utils';
 import './Randomizer.css';
@@ -32,14 +38,21 @@ export default function Randomizer() {
     randomPerks(perks);
   };
 
-  const handleWin = () => {
-    createSurvivorStatsById({
+  const handleWin = async () => {
+    try {
+      const perk = await getSurvivorStatsByPerk({ user_id: user.id, perk_id: survivorPerk1.ID });
+      const increment = perk.wins + 1;
+      updateSurvivorStatsById({ user_id: user.id, perk_id: survivorPerk1.ID, wins: increment });
+    } catch (error) {
+      updateSurvivorStatsById({ user_id: user.id, perk_id: survivorPerk1.ID, wins: 1 });
+    }
+  };
+
+  const handleLoss = () => {
+    updateSurvivorStatsById({
       perk_id: survivorPerk1.ID,
-      wins: 3,
-      losses: 3,
       user_id: user.id,
     });
-    console.log(survivorPerk1.ID);
   };
 
   if (loading) return <h1>loading...</h1>;
@@ -55,7 +68,7 @@ export default function Randomizer() {
       </div>
       <button onClick={handleSubmit}>roll</button>
       <button onClick={handleWin}>Escaped</button>
-      {/* <button onClick={handleLoss}>Sacrificed</button> */}
+      <button onClick={handleLoss}>Sacrificed</button>
     </>
   );
 }
