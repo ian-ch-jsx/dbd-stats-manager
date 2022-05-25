@@ -1,16 +1,11 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
-import { getSurvivorPerkById, getSurvivorPerks } from '../../services/data';
-import {
-  updateSurvivorStatsById,
-  getSurvivorStatsByUserId,
-  incrementWins,
-  getSurvivorStatsByPerk,
-} from '../../services/stats';
-import PerkCard from '../../components/PerkCard/PerkCard';
+import { getSurvivorPerks } from '../../services/data';
+import { updateSurvivorStatsById, getSurvivorStatsByPerk } from '../../services/stats';
 import { randomPerks } from '../../services/utils';
-import './Randomizer.css';
 import { useUser } from '../../context/UserContext';
+import PerkCard from '../../components/PerkCard/PerkCard';
+import './Randomizer.css';
 
 export default function Randomizer() {
   const [survivorPerk1, setSurvivorPerk1] = useState({});
@@ -38,21 +33,30 @@ export default function Randomizer() {
     randomPerks(perks);
   };
 
+  const perkArray = [survivorPerk1, survivorPerk2, survivorPerk3, survivorPerk4];
+
   const handleWin = async () => {
-    try {
-      const perk = await getSurvivorStatsByPerk({ user_id: user.id, perk_id: survivorPerk1.ID });
-      const increment = perk.wins + 1;
-      updateSurvivorStatsById({ user_id: user.id, perk_id: survivorPerk1.ID, wins: increment });
-    } catch (error) {
-      updateSurvivorStatsById({ user_id: user.id, perk_id: survivorPerk1.ID, wins: 1 });
+    for (let perk of perkArray) {
+      try {
+        const stat = await getSurvivorStatsByPerk({ user_id: user.id, perk_id: perk.ID });
+        const increment = stat.wins + 1;
+        await updateSurvivorStatsById({ user_id: user.id, perk_id: perk.ID, wins: increment });
+      } catch (error) {
+        await updateSurvivorStatsById({ user_id: user.id, perk_id: perk.ID, wins: 1 });
+      }
     }
   };
 
-  const handleLoss = () => {
-    updateSurvivorStatsById({
-      perk_id: survivorPerk1.ID,
-      user_id: user.id,
-    });
+  const handleLoss = async () => {
+    for (let perk of perkArray) {
+      try {
+        const stat = await getSurvivorStatsByPerk({ user_id: user.id, perk_id: perk.ID });
+        const increment = stat.losses + 1;
+        await updateSurvivorStatsById({ user_id: user.id, perk_id: perk.ID, losses: increment });
+      } catch (error) {
+        await updateSurvivorStatsById({ user_id: user.id, perk_id: perk.ID, losses: 1 });
+      }
+    }
   };
 
   if (loading) return <h1>loading...</h1>;
