@@ -9,8 +9,11 @@ function App() {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/survivor">
             <Main />
+          </Route>
+          <Route exact path="/killer">
+            <Main killer />
           </Route>
           <Route exact path="/signup">
             <Auth isSigningUp />

@@ -16,3 +16,20 @@ export async function updateSurvivorStatsById({ perk_id, wins, losses, user_id }
     .upsert({ perk_id, wins, losses, user_id }, { onConflict: 'perk_id' });
   return checkError(resp);
 }
+
+export async function getKillerStatsByUserId(user) {
+  const resp = await client.from('killer_stats').select('*').match({ user_id: user });
+  return checkError(resp);
+}
+
+export async function getKillerStatsByPerk({ user_id, perk_id }) {
+  const resp = await client.from('killer_stats').select('*').match({ user_id, perk_id }).single();
+  return checkError(resp);
+}
+
+export async function updateKillerStatsById({ perk_id, wins, losses, user_id }) {
+  const resp = await client
+    .from('killer_stats')
+    .upsert({ perk_id, wins, losses, user_id }, { onConflict: 'perk_id' });
+  return checkError(resp);
+}

@@ -7,7 +7,7 @@ import { useUser } from '../../context/UserContext';
 import PerkCard from '../../components/PerkCard/PerkCard';
 import './Randomizer.css';
 
-export default function Randomizer() {
+export default function SurvivorRandomizer() {
   const [survivorPerk1, setSurvivorPerk1] = useState({});
   const [survivorPerk2, setSurvivorPerk2] = useState({});
   const [survivorPerk3, setSurvivorPerk3] = useState({});
