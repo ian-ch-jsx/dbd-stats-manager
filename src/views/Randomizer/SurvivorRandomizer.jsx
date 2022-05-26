@@ -12,7 +12,7 @@ export default function SurvivorRandomizer() {
   const [survivorPerk2, setSurvivorPerk2] = useState({});
   const [survivorPerk3, setSurvivorPerk3] = useState({});
   const [survivorPerk4, setSurvivorPerk4] = useState({});
-  const [perks, setPerks] = useState([]);
+  const [perkList, setPerkList] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useUser();
 
@@ -20,6 +20,7 @@ export default function SurvivorRandomizer() {
     const fetchData = async () => {
       const data = await getSurvivorPerks();
       let perks = randomPerks(data);
+      setPerkList(data);
       setSurvivorPerk1(perks[0]);
       setSurvivorPerk2(perks[1]);
       setSurvivorPerk3(perks[2]);
@@ -30,7 +31,11 @@ export default function SurvivorRandomizer() {
   }, []);
 
   const handleSubmit = () => {
-    randomPerks(perks);
+    let perks = randomPerks(perkList);
+    setSurvivorPerk1(perks[0]);
+    setSurvivorPerk2(perks[1]);
+    setSurvivorPerk3(perks[2]);
+    setSurvivorPerk4(perks[3]);
   };
 
   const perkArray = [survivorPerk1, survivorPerk2, survivorPerk3, survivorPerk4];

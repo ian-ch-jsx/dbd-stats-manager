@@ -12,14 +12,15 @@ export default function KillerRandomizer() {
   const [killerPerk2, setKillerPerk2] = useState({});
   const [killerPerk3, setKillerPerk3] = useState({});
   const [killerPerk4, setKillerPerk4] = useState({});
-  const [perks, setPerks] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [perkList, setPerkList] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { user } = useUser();
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getKillerPerks();
       let perks = randomPerks(data);
+      setPerkList(data);
       setKillerPerk1(perks[0]);
       setKillerPerk2(perks[1]);
       setKillerPerk3(perks[2]);
@@ -30,7 +31,11 @@ export default function KillerRandomizer() {
   }, []);
 
   const handleSubmit = () => {
-    randomPerks(perks);
+    let perks = randomPerks(perkList);
+    setKillerPerk1(perks[0]);
+    setKillerPerk2(perks[1]);
+    setKillerPerk3(perks[2]);
+    setKillerPerk4(perks[3]);
   };
 
   const perkArray = [killerPerk1, killerPerk2, killerPerk3, killerPerk4];
