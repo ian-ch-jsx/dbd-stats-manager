@@ -68,12 +68,28 @@ export default function SurvivorRandomizer() {
   return (
     <>
       <div className="perk-row-1">
-        <PerkCard {...survivorPerk1} />
-        <PerkCard {...survivorPerk2} />
+        <div className="perk-card">
+          <PerkCard {...survivorPerk1} />
+          {/* <select value={perkList} onChange={(e) => setSurvivorPerk1(e.target.value)}>
+            <option>Select...</option>
+            {perkList.map((perk) => (
+              <option key={perk} value={perk}>
+                {perk.name}
+              </option>
+            ))}
+          </select> */}
+        </div>
+        <div className="perk-card">
+          <PerkCard {...survivorPerk2} />
+        </div>
       </div>
       <div className="perk-row-2">
-        <PerkCard {...survivorPerk3} />
-        <PerkCard {...survivorPerk4} />
+        <div className="perk-card">
+          <PerkCard {...survivorPerk3} />
+        </div>
+        <div className="perk-card">
+          <PerkCard {...survivorPerk4} />
+        </div>
       </div>
       <button onClick={handleSubmit}>roll</button>
       <button onClick={handleWin}>Escaped</button>

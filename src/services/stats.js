@@ -1,7 +1,10 @@
 import { checkError, client } from './client';
 
 export async function getSurvivorStatsByUserId(user) {
-  const resp = await client.from('survivor_stats').select('*').match({ user_id: user });
+  const resp = await client
+    .from('survivor_stats')
+    .select(`id, wins, losses, perk_id:perk_id ( name ) `)
+    .match({ user_id: user });
   return checkError(resp);
 }
 
@@ -18,7 +21,10 @@ export async function updateSurvivorStatsById({ perk_id, wins, losses, user_id }
 }
 
 export async function getKillerStatsByUserId(user) {
-  const resp = await client.from('killer_stats').select('*').match({ user_id: user });
+  const resp = await client
+    .from('killer_stats')
+    .select(`id, wins, losses, perk_id:perk_id ( name ) `)
+    .match({ user_id: user });
   return checkError(resp);
 }
 

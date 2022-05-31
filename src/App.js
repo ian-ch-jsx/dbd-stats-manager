@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Auth from './views/Auth/Auth';
 import Home from './views/Home/Home';
+import Profile from './views/Profile/Profile';
 function App() {
   return (
     <div className="App">
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route exact path="/signin">
             <Auth />
+          </Route>
+          <Route exact path="/profile">
+            <Profile />
           </Route>
         </Switch>
       </BrowserRouter>
