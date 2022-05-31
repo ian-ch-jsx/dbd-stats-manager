@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
+import uuid from 'react-uuid';
 import { getSurvivorPerks } from '../../services/data';
 import { updateSurvivorStatsById, getSurvivorStatsByPerk } from '../../services/stats';
 import { randomPerks } from '../../services/utils';
@@ -70,10 +71,10 @@ export default function SurvivorRandomizer() {
       <div className="perk-row-1">
         <div className="perk-card">
           <PerkCard {...survivorPerk1} />
-          <select value={perkList} onChange={(e) => setSurvivorPerk1(e.target.value)}>
+          <select value={perkList.perk} onChange={(e) => setSurvivorPerk1(e.target.value)}>
             <option>Select...</option>
             {perkList.map((perk) => (
-              <option key={perk} value={perk}>
+              <option key={uuid()} value={perk}>
                 {perk.name}
               </option>
             ))}

@@ -4,7 +4,8 @@ export async function getSurvivorStatsByUserId(user) {
   const resp = await client
     .from('survivor_stats')
     .select(`id, wins, losses, perk_id:perk_id ( name ) `)
-    .match({ user_id: user });
+    .match({ user_id: user })
+    .order('wins', { ascending: false });
   return checkError(resp);
 }
 
@@ -24,7 +25,8 @@ export async function getKillerStatsByUserId(user) {
   const resp = await client
     .from('killer_stats')
     .select(`id, wins, losses, perk_id:perk_id ( name ) `)
-    .match({ user_id: user });
+    .match({ user_id: user })
+    .order('wins', { ascending: false });
   return checkError(resp);
 }
 
