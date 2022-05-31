@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useUser } from '../../context/UserContext';
-import { getKillerPerks, getSurvivorPerks } from '../../services/data';
-import { getKillerStatsByUserId } from '../../services/stats';
+import { getKillerStatsByUserId, getSurvivorStatsByUserId } from '../../services/stats';
+import './Profile.css';
 
 export default function Profile() {
   const { user } = useUser();
@@ -11,18 +11,41 @@ export default function Profile() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const survivorPerks = await getSurvivorPerks();
-      const killerPerks = await getKillerPerks();
-      const data = await getKillerStatsByUserId(user.id);
-      setTopKiller(data);
+      const killerData = await getKillerStatsByUserId(user.id);
+      const survivorData = await getSurvivorStatsByUserId(user.id);
+      setTopKiller(killerData);
+      setTopSurvivor(survivorData);
       setLoading(false);
     };
     fetchData();
   }, []);
 
   return (
-    <div>
-      TEST <p>{topKiller.perk_id}</p>
+    <div className="stats-container">
+      <span>
+        <h1>Killer</h1>
+        <p>
+          {topKiller.map((perk) => (
+            <>
+              <h3>{perk.perk_id.name}</h3>
+              <p>wins: {perk.wins}</p>
+              <p>losses: {perk.losses}</p>
+            </>
+          ))}
+        </p>
+      </span>
+      <span>
+        <h1>Survivor</h1>
+        <p>
+          {topSurvivor.map((perk) => (
+            <>
+              <h3>{perk.perk_id.name}</h3>
+              <p>wins: {perk.wins}</p>
+              <p>losses: {perk.losses}</p>
+            </>
+          ))}
+        </p>
+      </span>
     </div>
   );
 }

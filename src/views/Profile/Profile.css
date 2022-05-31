@@ -1,0 +1,9 @@
+.stats-container {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+
+.stats-container span {
+  padding: 50px;
+}
