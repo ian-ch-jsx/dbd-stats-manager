@@ -35,7 +35,7 @@ h2 {
   color: #fefefe;
 }
 
-.header a {
+.header span a {
   color: #e26c6c;
   text-transform: uppercase;
   font-family: 'Roboto';
@@ -46,4 +46,15 @@ h2 {
 
 .header a:hover {
   color: #fefefe;
+}
+
+.header a {
+  color: #fefefe;
+  font-family: 'Roboto';
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.header a:hover {
+  font-weight: bold;
 }

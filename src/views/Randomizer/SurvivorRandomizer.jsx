@@ -71,14 +71,14 @@ export default function SurvivorRandomizer() {
       <div className="perk-row-1">
         <div className="perk-card">
           <PerkCard {...survivorPerk1} />
-          <select value={perkList.perk} onChange={(e) => setSurvivorPerk1(e.target.value)}>
+          {/* <select value={perkList.perk} onChange={(e) => setSurvivorPerk1(e.target.value)}>
             <option>Select...</option>
             {perkList.map((perk) => (
               <option key={uuid()} value={perk}>
                 {perk.name}
               </option>
             ))}
-          </select>
+          </select> */}
         </div>
         <div className="perk-card">
           <PerkCard {...survivorPerk2} />
@@ -92,9 +92,15 @@ export default function SurvivorRandomizer() {
           <PerkCard {...survivorPerk4} />
         </div>
       </div>
-      <button onClick={handleSubmit}>roll</button>
-      <button onClick={handleWin}>Escaped</button>
-      <button onClick={handleLoss}>Sacrificed</button>
+      <button className="controls" onClick={handleSubmit}>
+        roll
+      </button>
+      <button className="controls" onClick={handleWin}>
+        Escaped
+      </button>
+      <button className="controls" onClick={handleLoss}>
+        Sacrificed
+      </button>
     </>
   );
 }

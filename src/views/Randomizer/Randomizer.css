@@ -4,3 +4,19 @@
   margin: auto;
   justify-content: center;
 }
+
+.controls {
+  color: #fefefe;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 10px;
+  background-color: #121212;
+  padding: 15px;
+  width: 145px;
+  margin: 10px 20px 30px;
+}
+
+.controls:hover {
+  background-color: #1d1d1d;
+}

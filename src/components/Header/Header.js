@@ -33,7 +33,9 @@ export default function Header() {
           <img className="header-image" alt="" src={`${process.env.PUBLIC_URL}/assets/logo.jpg`} />
         </span>
 
-        <h1>Dead by Daylight Perk Stats</h1>
+        <h1>
+          <Link to="/">Dead by Daylight Perk Stats</Link>
+        </h1>
 
         <span>
           <h2>{message}</h2>
