@@ -1,8 +1,8 @@
 import { useUser } from '../../context/UserContext';
 import { Link } from 'react-router-dom';
-import './Header.css';
 import { signOutUser } from '../../services/auth';
 import { useHistory } from 'react-router-dom';
+import './Header.css';
 
 export default function Header() {
   const { user } = useUser();

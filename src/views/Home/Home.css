@@ -1,0 +1,30 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+.home-container button {
+  margin: 10px;
+  background-color: #141414;
+  padding: 15px;
+  width: 200px;
+}
+
+.home-container button:hover {
+  background-color: #1d1d1d;
+}
+
+.home-container a {
+  color: #fefefe;
+  text-transform: uppercase;
+  font-family: 'Roboto';
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.home-container a:hover {
+  font-weight: bold;
+}

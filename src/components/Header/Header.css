@@ -36,5 +36,14 @@ h2 {
 }
 
 .header a {
+  color: #e26c6c;
+  text-transform: uppercase;
+  font-family: 'Roboto';
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.header a:hover {
   color: #fefefe;
 }
