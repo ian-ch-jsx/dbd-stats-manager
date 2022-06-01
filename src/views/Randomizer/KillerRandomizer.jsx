@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
+import uuid from 'react-uuid';
 import { getKillerPerks } from '../../services/data';
 import { updateKillerStatsById, getKillerStatsByPerk } from '../../services/stats';
 import { randomPerks } from '../../services/utils';
@@ -68,16 +69,32 @@ export default function KillerRandomizer() {
   return (
     <>
       <div className="perk-row-1">
-        <PerkCard {...killerPerk1} />
-        <PerkCard {...killerPerk2} />
+        <div className="perk-card">
+          <PerkCard {...killerPerk1} />
+          {/* <select value={perkList.perk} onChange={(e) => setKillerPerk1(e.target.value)}>
+            <option>Select...</option>
+            {perkList.map((perk) => (
+              <option key={uuid()} value={perk}>
+                {perk.name}
+              </option>
+            ))}
+          </select> */}
+        </div>
+        <div className="perk-card">
+          <PerkCard {...killerPerk2} />
+        </div>
       </div>
       <div className="perk-row-2">
-        <PerkCard {...killerPerk3} />
-        <PerkCard {...killerPerk4} />
+        <div className="perk-card">
+          <PerkCard {...killerPerk3} />
+        </div>
+        <div className="perk-card">
+          <PerkCard {...killerPerk4} />
+        </div>
       </div>
       <button onClick={handleSubmit}>roll</button>
-      <button onClick={handleWin}>Entity Pleased</button>
-      <button onClick={handleLoss}>Entity Displeased</button>
+      <button onClick={handleWin}>Escaped</button>
+      <button onClick={handleLoss}>Sacrificed</button>
     </>
   );
 }

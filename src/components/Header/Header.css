@@ -13,6 +13,7 @@ body {
   padding: 15px;
   align-self: center;
   align-items: center;
+  margin-bottom: 50px;
 }
 
 .header-image {
@@ -20,7 +21,40 @@ body {
   align-self: center;
 }
 
+.header span {
+  width: 15vw;
+}
+
 h1,
 h2 {
   font-weight: 100;
+}
+
+.header button {
+  background-color: transparent;
+  color: #fefefe;
+}
+
+.header span a {
+  color: #e26c6c;
+  text-transform: uppercase;
+  font-family: 'Roboto';
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.header a:hover {
+  color: #fefefe;
+}
+
+.header a {
+  color: #fefefe;
+  font-family: 'Roboto';
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.header a:hover {
+  font-weight: bold;
 }

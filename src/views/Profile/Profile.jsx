@@ -18,7 +18,7 @@ export default function Profile() {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [user.id]);
 
   return (
     <div className="stats-container">
