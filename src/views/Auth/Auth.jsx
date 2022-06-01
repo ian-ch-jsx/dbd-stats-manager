@@ -4,6 +4,7 @@ import { useUser } from '../../context/UserContext';
 import AuthForm from '../../components/Auth/AuthForm';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import './Auth.css';
 
 export default function Auth({ isSigningUp = false }) {
   const { setUser } = useUser();
@@ -34,21 +35,26 @@ export default function Auth({ isSigningUp = false }) {
   };
   return (
     <>
-      <h2>{isSigningUp ? 'create an account' : 'sign in'}</h2>
-      <h4>
-        {isSigningUp ? (
-          <Link to="/signin">Already Registered?</Link>
-        ) : (
-          <Link to="/signup">Register here</Link>
-        )}
-      </h4>
-      <AuthForm
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword}
-        handleSubmit={handleSubmit}
-      />
+      <div className="auth-container">
+        <h4>
+          {isSigningUp ? (
+            <>
+              Sign Up <Link to="/signin">Sign In</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/signup">Sign Up</Link> Sign In
+            </>
+          )}
+        </h4>
+        <AuthForm
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          handleSubmit={handleSubmit}
+        />
+      </div>
     </>
   );
 }

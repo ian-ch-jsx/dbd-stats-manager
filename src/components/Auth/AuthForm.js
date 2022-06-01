@@ -1,7 +1,7 @@
 export default function AuthForm({ email, setEmail, password, setPassword, handleSubmit }) {
   return (
-    <div>
-      <form className="auth" onSubmit={handleSubmit}>
+    <>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <input
           id="email"
           type="email"
@@ -18,6 +18,6 @@ export default function AuthForm({ email, setEmail, password, setPassword, handl
         />
         <button type="submit">submit</button>
       </form>
-    </div>
+    </>
   );
 }
