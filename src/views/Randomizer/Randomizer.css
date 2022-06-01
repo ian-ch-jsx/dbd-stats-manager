@@ -20,3 +20,21 @@
 .controls:hover {
   background-color: #1d1d1d;
 }
+
+.auth-link {
+  margin-bottom: 10px;
+}
+
+.auth-link a {
+  color: #e26c6c;
+  text-transform: uppercase;
+  font-family: 'Roboto';
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.auth-link a:hover {
+  color: #fefefe;
+}
