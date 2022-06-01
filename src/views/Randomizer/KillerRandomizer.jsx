@@ -100,10 +100,10 @@ export default function KillerRandomizer() {
         {user.id ? (
           <>
             <button className="controls" onClick={handleWin}>
-              Escaped
+              Entity Pleased
             </button>
             <button className="controls" onClick={handleLoss}>
-              Sacrificed
+              Entity Displeased
             </button>
           </>
         ) : (
