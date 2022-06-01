@@ -92,9 +92,15 @@ export default function KillerRandomizer() {
           <PerkCard {...killerPerk4} />
         </div>
       </div>
-      <button onClick={handleSubmit}>roll</button>
-      <button onClick={handleWin}>Escaped</button>
-      <button onClick={handleLoss}>Sacrificed</button>
+      <button className="controls" onClick={handleSubmit}>
+        roll
+      </button>
+      <button className="controls" onClick={handleWin}>
+        Escaped
+      </button>
+      <button className="controls" onClick={handleLoss}>
+        Sacrificed
+      </button>
     </>
   );
 }
