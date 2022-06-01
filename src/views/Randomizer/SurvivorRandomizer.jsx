@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import uuid from 'react-uuid';
 import { getSurvivorPerks } from '../../services/data';
 import { updateSurvivorStatsById, getSurvivorStatsByPerk } from '../../services/stats';
 import { randomPerks } from '../../services/utils';
 import { useUser } from '../../context/UserContext';
 import PerkCard from '../../components/PerkCard/PerkCard';
+import uuid from 'react-uuid';
 import './Randomizer.css';
 
 export default function SurvivorRandomizer() {

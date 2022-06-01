@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
-import uuid from 'react-uuid';
+import { Link } from 'react-router-dom';
 import { getKillerPerks } from '../../services/data';
 import { updateKillerStatsById, getKillerStatsByPerk } from '../../services/stats';
 import { randomPerks } from '../../services/utils';
 import { useUser } from '../../context/UserContext';
 import PerkCard from '../../components/PerkCard/PerkCard';
+import uuid from 'react-uuid';
 import './Randomizer.css';
 
 export default function KillerRandomizer() {
@@ -92,15 +93,26 @@ export default function KillerRandomizer() {
           <PerkCard {...killerPerk4} />
         </div>
       </div>
-      <button className="controls" onClick={handleSubmit}>
-        roll
-      </button>
-      <button className="controls" onClick={handleWin}>
-        Escaped
-      </button>
-      <button className="controls" onClick={handleLoss}>
-        Sacrificed
-      </button>
+      <div className="controls-container">
+        <button className="controls" onClick={handleSubmit}>
+          roll
+        </button>
+        {user.id ? (
+          <>
+            <button className="controls" onClick={handleWin}>
+              Escaped
+            </button>
+            <button className="controls" onClick={handleLoss}>
+              Sacrificed
+            </button>
+          </>
+        ) : (
+          ''
+        )}
+      </div>
+      <div className="auth-link">
+        {user.id ? '' : <Link to="/signin">Sign in to save your stats.</Link>}
+      </div>
     </>
   );
 }
