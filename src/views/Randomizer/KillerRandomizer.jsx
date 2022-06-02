@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getKillerPerks } from '../../services/data';
+import { getKillerPerks, getKillers } from '../../services/data';
 import { updateKillerStatsById, getKillerStatsByPerk } from '../../services/stats';
 import { randomPerks } from '../../services/utils';
 import { useUser } from '../../context/UserContext';
@@ -14,6 +14,7 @@ export default function KillerRandomizer() {
   const [killerPerk2, setKillerPerk2] = useState({});
   const [killerPerk3, setKillerPerk3] = useState({});
   const [killerPerk4, setKillerPerk4] = useState({});
+  const [killers, setKillers] = useState([]);
   const [perkList, setPerkList] = useState([]);
   const [loading, setLoading] = useState(false);
   const { user } = useUser();
@@ -21,8 +22,10 @@ export default function KillerRandomizer() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getKillerPerks();
+      const killers = await getKillers();
       let perks = randomPerks(data);
       setPerkList(data);
+      setKillers(killers);
       setKillerPerk1(perks[0]);
       setKillerPerk2(perks[1]);
       setKillerPerk3(perks[2]);
@@ -30,6 +33,7 @@ export default function KillerRandomizer() {
       setLoading(false);
     };
     fetchData();
+    console.log('killers', killers);
   }, []);
 
   const handleSubmit = () => {
@@ -93,6 +97,20 @@ export default function KillerRandomizer() {
           <PerkCard {...killerPerk4} />
         </div>
       </div>
+      {user.id ? (
+        <>
+          Set Killer:
+          <select value={killers.name}>
+            {killers.map((killer) => (
+              <option key={uuid()} value={killer}>
+                {killer.name}
+              </option>
+            ))}
+          </select>
+        </>
+      ) : (
+        ''
+      )}
       <div className="controls-container">
         <button className="controls" onClick={handleSubmit}>
           roll

@@ -10,6 +10,11 @@ export async function getKillerPerks() {
   return checkError(resp);
 }
 
+export async function getKillers() {
+  const resp = await client.from('killers').select('name');
+  return checkError(resp);
+}
+
 export async function getSurvivorPerkById(ID) {
   const resp = await client.from('survivor_perks').select('*').match({ ID }).single();
   return checkError(resp);
