@@ -19,3 +19,8 @@ export async function getSurvivorPerkById(ID) {
   const resp = await client.from('survivor_perks').select('*').match({ ID }).single();
   return checkError(resp);
 }
+
+export async function getKillerPerkById(ID) {
+  const resp = await client.from('killer_perks').select('*').match({ ID }).single();
+  return checkError(resp);
+}

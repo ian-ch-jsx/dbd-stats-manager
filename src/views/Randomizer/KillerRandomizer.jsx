@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getKillerPerks, getKillers } from '../../services/data';
+import { getKillerPerks, getKillers, getKillerPerkById } from '../../services/data';
 import { updateKillerStatsById, getKillerStatsByPerk } from '../../services/stats';
 import { randomPerks } from '../../services/utils';
 import { useUser } from '../../context/UserContext';
@@ -70,50 +70,79 @@ export default function KillerRandomizer() {
     }
   };
 
+  const handlePerkSelect = async (perk, id) => {
+    let setPerk = await getKillerPerkById(id);
+    perk(setPerk);
+  };
+
   if (loading) return <h1>loading...</h1>;
   return (
     <>
       <div className="perk-row-1">
         <div className="perk-card">
           <PerkCard {...killerPerk1} />
-          {/* <select value={perkList.perk} onChange={(e) => setKillerPerk1(e.target.value)}>
+          <select onChange={(e) => handlePerkSelect(setKillerPerk1, e.target.value)}>
             <option>Select...</option>
             {perkList.map((perk) => (
-              <option key={uuid()} value={perk}>
+              <option key={uuid()} value={perk.ID}>
                 {perk.name}
               </option>
             ))}
-          </select> */}
+          </select>
         </div>
         <div className="perk-card">
           <PerkCard {...killerPerk2} />
+          <select onChange={(e) => handlePerkSelect(setKillerPerk2, e.target.value)}>
+            <option>Select...</option>
+            {perkList.map((perk) => (
+              <option key={uuid()} value={perk.ID}>
+                {perk.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
       <div className="perk-row-2">
         <div className="perk-card">
           <PerkCard {...killerPerk3} />
+          <select onChange={(e) => handlePerkSelect(setKillerPerk3, e.target.value)}>
+            <option>Select...</option>
+            {perkList.map((perk) => (
+              <option key={uuid()} value={perk.ID}>
+                {perk.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="perk-card">
           <PerkCard {...killerPerk4} />
+          <select onChange={(e) => handlePerkSelect(setKillerPerk4, e.target.value)}>
+            <option>Select...</option>
+            {perkList.map((perk) => (
+              <option key={uuid()} value={perk.ID}>
+                {perk.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
       {user.id ? (
         <>
-          Set Killer:
+          {/* Set Killer:
           <select value={killers.name}>
             {killers.map((killer) => (
               <option key={uuid()} value={killer}>
                 {killer.name}
               </option>
             ))}
-          </select>
+          </select> */}
         </>
       ) : (
         ''
       )}
       <div className="controls-container">
         <button className="controls" onClick={handleSubmit}>
-          roll
+          Random
         </button>
         {user.id ? (
           <>
