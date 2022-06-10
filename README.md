@@ -1,13 +1,20 @@
-# MVP
+# Dead By Daylight Stats Manager
 
-- [x] users can randomize perks
+### A React app for tracking win/loss statistics for the video game Dead By Daylight, utilizing [Supabase](https://supabase.com/) for the backend.
 
-  - [_] ...without duplicates
+---
 
-* users can select between killer and survivor perks
+## Current Features
 
-## to add...
+- Users can randomize a set of four perks (build)
+- Users can manually select perks
+- Users can register to save win/loss statistics
 
-- users can save win/loss data if they have an account
-- users can filter out certain perk categories
-- users can select their own builds
+## Planned Features
+
+- Users can filter perks by category before randomizing a build
+- Users can select which killer character was used when saving killer statistics (killers have unique powers, which effects the usefulness of certain perks)
+- Users can save and track wins/losses on full perk builds (some perks tend to be more effective in combination)
+- Averages
+- Chart.js integration
+- Leaderboards?
