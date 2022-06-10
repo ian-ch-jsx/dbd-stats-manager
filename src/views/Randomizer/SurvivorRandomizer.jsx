@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getSurvivorPerks } from '../../services/data';
+import { getSurvivorPerkById, getSurvivorPerks } from '../../services/data';
 import { updateSurvivorStatsById, getSurvivorStatsByPerk } from '../../services/stats';
 import { randomPerks } from '../../services/utils';
 import { useUser } from '../../context/UserContext';
@@ -66,36 +66,65 @@ export default function SurvivorRandomizer() {
     }
   };
 
+  const handlePerkSelect = async (perk, id) => {
+    let setPerk = await getSurvivorPerkById(id);
+    perk(setPerk);
+  };
+
   if (loading) return <h1>loading...</h1>;
   return (
     <>
       <div className="perk-row-1">
         <div className="perk-card">
           <PerkCard {...survivorPerk1} />
-          {/* <select value={perkList.perk} onChange={(e) => setSurvivorPerk1(e.target.value)}>
+          <select onChange={(e) => handlePerkSelect(setSurvivorPerk1, e.target.value)}>
             <option>Select...</option>
             {perkList.map((perk) => (
-              <option key={uuid()} value={perk}>
+              <option key={uuid()} value={perk.ID}>
                 {perk.name}
               </option>
             ))}
-          </select> */}
+          </select>
         </div>
         <div className="perk-card">
           <PerkCard {...survivorPerk2} />
+          <select onChange={(e) => handlePerkSelect(setSurvivorPerk2, e.target.value)}>
+            <option>Select...</option>
+            {perkList.map((perk) => (
+              <option key={uuid()} value={perk.ID}>
+                {perk.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
       <div className="perk-row-2">
         <div className="perk-card">
           <PerkCard {...survivorPerk3} />
+          <select onChange={(e) => handlePerkSelect(setSurvivorPerk3, e.target.value)}>
+            <option>Select...</option>
+            {perkList.map((perk) => (
+              <option key={uuid()} value={perk.ID}>
+                {perk.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="perk-card">
           <PerkCard {...survivorPerk4} />
+          <select onChange={(e) => handlePerkSelect(setSurvivorPerk4, e.target.value)}>
+            <option>Select...</option>
+            {perkList.map((perk) => (
+              <option key={uuid()} value={perk.ID}>
+                {perk.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
       <div className="controls-container">
         <button className="controls" onClick={handleSubmit}>
-          roll
+          Random
         </button>
         {user.id ? (
           <>
