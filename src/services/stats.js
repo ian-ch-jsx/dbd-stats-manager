@@ -21,6 +21,13 @@ export async function updateSurvivorStatsById({ perk_id, wins, losses, user_id }
   return checkError(resp);
 }
 
+export async function updateSurvivorBuildById({ perk_ids, user_id }) {
+  const resp = await client
+    .from('survivor_builds')
+    .upsert({ perk_ids, user_id }, { onConflict: 'perk_ids' });
+  return checkError(resp);
+}
+
 export async function getKillerStatsByUserId(user) {
   const resp = await client
     .from('killer_stats')

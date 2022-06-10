@@ -14,6 +14,7 @@ export default function SurvivorRandomizer() {
   const [survivorPerk2, setSurvivorPerk2] = useState({});
   const [survivorPerk3, setSurvivorPerk3] = useState({});
   const [survivorPerk4, setSurvivorPerk4] = useState({});
+  const [build, setBuild] = useState([]);
   const [perkList, setPerkList] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useUser();
