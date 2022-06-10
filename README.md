@@ -18,3 +18,7 @@
 - Averages
 - Chart.js integration
 - Leaderboards?
+
+## Known Bugs
+
+- Header state does not update on logout
