@@ -21,4 +21,4 @@
 
 ## Known Bugs
 
-- Header state does not update on logout
+- Select menus revert to default on change. confusing UX

@@ -5,11 +5,12 @@ import { useHistory } from 'react-router-dom';
 import './Header.css';
 
 export default function Header() {
-  const { user } = useUser();
+  const { user, setUser } = useUser();
   const history = useHistory();
 
   const handleLogout = async () => {
     signOutUser();
+    setUser({});
     history.push('/');
   };
 
