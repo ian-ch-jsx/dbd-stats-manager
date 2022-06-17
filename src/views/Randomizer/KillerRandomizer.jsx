@@ -12,14 +12,11 @@ import { randomPerks } from '../../services/utils';
 import { useUser } from '../../context/UserContext';
 import PerkCard from '../../components/PerkCard/PerkCard';
 import uuid from 'react-uuid';
-import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-
+import Select from '@mui/material/Select';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
 import './Randomizer.css';
 
 const darkTheme = createTheme({
