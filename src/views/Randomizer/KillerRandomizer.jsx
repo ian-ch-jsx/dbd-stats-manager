@@ -1,8 +1,18 @@
 /* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getKillerPerks, getKillers, getKillerPerkById } from '../../services/data';
-import { updateKillerStatsById, getKillerStatsByPerk } from '../../services/stats';
+import {
+  getKillerPerks,
+  getKillers,
+  getKillerPerkById,
+  getKillerByName,
+} from '../../services/data';
+import {
+  updateKillerStatsById,
+  getKillerStatsByPerk,
+  getKillerStatID,
+  insertKillerStats,
+} from '../../services/stats';
 import { randomPerks } from '../../services/utils';
 import { useUser } from '../../context/UserContext';
 import PerkCard from '../../components/PerkCard/PerkCard';
@@ -14,7 +24,8 @@ export default function KillerRandomizer() {
   const [killerPerk2, setKillerPerk2] = useState({});
   const [killerPerk3, setKillerPerk3] = useState({});
   const [killerPerk4, setKillerPerk4] = useState({});
-  const [killers, setKillers] = useState([]);
+  const [killerList, setKillerList] = useState([]);
+  const [killer, setKiller] = useState({});
   const [perkList, setPerkList] = useState([]);
   const [loading, setLoading] = useState(false);
   const { user } = useUser();
@@ -25,7 +36,7 @@ export default function KillerRandomizer() {
       const killers = await getKillers();
       let perks = randomPerks(data);
       setPerkList(data);
-      setKillers(killers);
+      setKillerList(killers);
       setKillerPerk1(perks[0]);
       setKillerPerk2(perks[1]);
       setKillerPerk3(perks[2]);
@@ -33,7 +44,6 @@ export default function KillerRandomizer() {
       setLoading(false);
     };
     fetchData();
-    console.log('killers', killers);
   }, []);
 
   const handleSubmit = () => {
@@ -46,17 +56,17 @@ export default function KillerRandomizer() {
 
   const perkArray = [killerPerk1, killerPerk2, killerPerk3, killerPerk4];
 
-  const handleWin = async () => {
-    for (let perk of perkArray) {
-      try {
-        const stat = await getKillerStatsByPerk({ user_id: user.id, perk_id: perk.ID });
-        const increment = stat.wins + 1;
-        await updateKillerStatsById({ user_id: user.id, perk_id: perk.ID, wins: increment });
-      } catch (error) {
-        await updateKillerStatsById({ user_id: user.id, perk_id: perk.ID, wins: 1 });
-      }
-    }
-  };
+  // const handleWin = async () => {
+  //   for (let perk of perkArray) {
+  //     try {
+  //       const stat = await getKillerStatsByPerk({ user_id: user.id, perk_id: perk.ID });
+  //       const increment = stat.wins + 1;
+  //       await updateKillerStatsById({ user_id: user.id, perk_id: perk.ID, wins: increment });
+  //     } catch (error) {
+  //       await updateKillerStatsById({ user_id: user.id, perk_id: perk.ID, wins: 1 });
+  //     }
+  //   }
+  // };
 
   const handleLoss = async () => {
     for (let perk of perkArray) {
@@ -70,9 +80,36 @@ export default function KillerRandomizer() {
     }
   };
 
+  const handleWin = async () => {
+    for (let perk of perkArray) {
+      try {
+        const statId = await getKillerStatID({
+          perk_id: perk.ID,
+          user_id: user.id,
+          killer: killer.name,
+        });
+        const increment = statId.wins + 1;
+        await updateKillerStatsById({ id: statId.id, wins: increment });
+      } catch (error) {
+        await insertKillerStats({
+          user_id: user.id,
+          perk_id: perk.ID,
+          wins: 1,
+          losses: 0,
+          killer: killer.name,
+        });
+      }
+    }
+  };
+
   const handlePerkSelect = async (perk, id) => {
     let setPerk = await getKillerPerkById(id);
     perk(setPerk);
+  };
+
+  const handleSetKiller = async (killer, killerName) => {
+    let setKiller = await getKillerByName(killerName);
+    killer(setKiller);
   };
 
   if (loading) return <h1>loading...</h1>;
@@ -128,14 +165,14 @@ export default function KillerRandomizer() {
       </div>
       {user.id ? (
         <>
-          {/* Set Killer:
-          <select value={killers.name}>
-            {killers.map((killer) => (
-              <option key={uuid()} value={killer}>
+          Set Killer:
+          <select onChange={(e) => handleSetKiller(setKiller, e.target.value)}>
+            {killerList.map((killer) => (
+              <option key={uuid()} value={killer.name}>
                 {killer.name}
               </option>
             ))}
-          </select> */}
+          </select>
         </>
       ) : (
         ''

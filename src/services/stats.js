@@ -35,9 +35,23 @@ export async function getKillerStatsByPerk({ user_id, perk_id }) {
   return checkError(resp);
 }
 
-export async function updateKillerStatsById({ perk_id, wins, losses, user_id }) {
+export async function insertKillerStats({ perk_id, wins, losses, user_id, killer }) {
   const resp = await client
     .from('killer_stats')
-    .upsert({ perk_id, wins, losses, user_id }, { onConflict: 'perk_id' });
+    .insert([{ perk_id, wins, losses, user_id, killer }]);
+  return checkError(resp);
+}
+
+export async function updateKillerStatsById({ id, wins, losses }) {
+  const resp = await client.from('killer_stats').update({ wins, losses }).match({ id });
+  return checkError(resp);
+}
+
+export async function getKillerStatID({ perk_id, user_id, killer }) {
+  const resp = await client
+    .from('killer_stats')
+    .select('*')
+    .match({ perk_id: perk_id, killer: killer, user_id: user_id })
+    .single();
   return checkError(resp);
 }
