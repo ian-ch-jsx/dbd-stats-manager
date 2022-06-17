@@ -38,3 +38,14 @@
 .auth-link a:hover {
   color: #fefefe;
 }
+
+.killer-select {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: auto;
+}
+
+.killer-select span {
+  margin: 10px;
+}
