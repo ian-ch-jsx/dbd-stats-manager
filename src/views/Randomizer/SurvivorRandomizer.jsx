@@ -7,7 +7,18 @@ import { randomPerks } from '../../services/utils';
 import { useUser } from '../../context/UserContext';
 import PerkCard from '../../components/PerkCard/PerkCard';
 import uuid from 'react-uuid';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './Randomizer.css';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 export default function SurvivorRandomizer() {
   const [survivorPerk1, setSurvivorPerk1] = useState({});
@@ -27,9 +38,9 @@ export default function SurvivorRandomizer() {
       setSurvivorPerk2(perks[1]);
       setSurvivorPerk3(perks[2]);
       setSurvivorPerk4(perks[3]);
-      setLoading(false);
     };
     fetchData();
+    setLoading(false);
   }, []);
 
   const handleSubmit = () => {
@@ -73,53 +84,77 @@ export default function SurvivorRandomizer() {
 
   if (loading) return <h1>loading...</h1>;
   return (
-    <>
+    <ThemeProvider theme={darkTheme}>
       <div className="perk-row-1">
         <div className="perk-card">
           <PerkCard {...survivorPerk1} />
-          <select onChange={(e) => handlePerkSelect(setSurvivorPerk1, e.target.value)}>
-            <option>Select...</option>
-            {perkList.map((perk) => (
-              <option key={uuid()} value={perk.ID}>
-                {perk.name}
-              </option>
-            ))}
-          </select>
+          <FormControl sx={{ minWidth: 120 }} size="small" variant="standard">
+            <InputLabel id="perk1">select</InputLabel>
+            <Select
+              labelId="perk1"
+              label="select"
+              onChange={(e) => handlePerkSelect(setSurvivorPerk1, e.target.value)}
+            >
+              {perkList.map((perk) => (
+                <MenuItem key={uuid()} value={perk.ID}>
+                  {perk.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
         <div className="perk-card">
           <PerkCard {...survivorPerk2} />
-          <select onChange={(e) => handlePerkSelect(setSurvivorPerk2, e.target.value)}>
-            <option>Select...</option>
-            {perkList.map((perk) => (
-              <option key={uuid()} value={perk.ID}>
-                {perk.name}
-              </option>
-            ))}
-          </select>
+          <FormControl sx={{ minWidth: 120 }} size="small" variant="standard">
+            <InputLabel id="perk2">select</InputLabel>
+            <Select
+              labelId="perk2"
+              label="select"
+              onChange={(e) => handlePerkSelect(setSurvivorPerk2, e.target.value)}
+            >
+              {perkList.map((perk) => (
+                <MenuItem key={uuid()} value={perk.ID}>
+                  {perk.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
       </div>
       <div className="perk-row-2">
         <div className="perk-card">
           <PerkCard {...survivorPerk3} />
-          <select onChange={(e) => handlePerkSelect(setSurvivorPerk3, e.target.value)}>
-            <option>Select...</option>
-            {perkList.map((perk) => (
-              <option key={uuid()} value={perk.ID}>
-                {perk.name}
-              </option>
-            ))}
-          </select>
+          <FormControl sx={{ minWidth: 120 }} size="small" variant="standard">
+            <InputLabel id="perk3">select</InputLabel>
+            <Select
+              labelId="perk3"
+              label="select"
+              onChange={(e) => handlePerkSelect(setSurvivorPerk3, e.target.value)}
+            >
+              {perkList.map((perk) => (
+                <MenuItem key={uuid()} value={perk.ID}>
+                  {perk.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
         <div className="perk-card">
           <PerkCard {...survivorPerk4} />
-          <select onChange={(e) => handlePerkSelect(setSurvivorPerk4, e.target.value)}>
-            <option>Select...</option>
-            {perkList.map((perk) => (
-              <option key={uuid()} value={perk.ID}>
-                {perk.name}
-              </option>
-            ))}
-          </select>
+          <FormControl sx={{ minWidth: 120 }} size="small" variant="standard">
+            <InputLabel id="perk4">select</InputLabel>
+            <Select
+              labelId="perk4"
+              label="select"
+              onChange={(e) => handlePerkSelect(setSurvivorPerk4, e.target.value)}
+            >
+              {perkList.map((perk) => (
+                <MenuItem key={uuid()} value={perk.ID}>
+                  {perk.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
       </div>
       <div className="controls-container">
@@ -142,6 +177,6 @@ export default function SurvivorRandomizer() {
       <div className="auth-link">
         {user.id ? '' : <Link to="/signin">Sign in to save your stats.</Link>}
       </div>
-    </>
+    </ThemeProvider>
   );
 }

@@ -21,6 +21,7 @@ export default function Profile() {
     fetchData();
   }, [user.id]);
 
+  if (loading) return 'loading...';
   return (
     <div className="stats-container">
       {user.id ? (
