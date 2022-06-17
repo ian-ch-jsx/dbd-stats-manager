@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { signUpUser, signInUser } from '../../services/auth';
 import { useUser } from '../../context/UserContext';
 import AuthForm from '../../components/Auth/AuthForm';
@@ -33,6 +33,7 @@ export default function Auth({ isSigningUp = false }) {
       throw new Error(error);
     }
   };
+
   return (
     <>
       <div className="auth-container">
@@ -53,6 +54,7 @@ export default function Auth({ isSigningUp = false }) {
           password={password}
           setPassword={setPassword}
           handleSubmit={handleSubmit}
+          error={error}
         />
       </div>
     </>
