@@ -19,14 +19,14 @@ export default function Header() {
       <button>
         <Link to="/profile">Your Stats</Link>
       </button>
-      <button onClick={handleLogout}>Sign Out</button>
+      | <button onClick={handleLogout}>Sign Out</button>
     </>
   ) : (
     <>
       <button>
         <Link to="/signin">Sign In</Link>
       </button>
-
+      |
       <button>
         <Link to="/signup">Sign Up</Link>
       </button>
@@ -36,16 +36,20 @@ export default function Header() {
     <>
       <div className="header">
         <span>
-          <img className="header-image" alt="" src={`${process.env.PUBLIC_URL}/assets/logo.jpg`} />
+          <button>
+            <Link to="/killer">Killer </Link>
+          </button>
+          |
+          <button>
+            <Link to="/survivor">Survivor </Link>
+          </button>
         </span>
 
         <h1>
           <Link to="/">Dead by Daylight Perk Stats</Link>
         </h1>
 
-        <span>
-          <h2>{message}</h2>
-        </span>
+        <span>{message}</span>
       </div>
     </>
   );

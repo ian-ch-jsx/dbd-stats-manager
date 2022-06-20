@@ -86,7 +86,7 @@ export default function SurvivorRandomizer() {
   return (
     <ThemeProvider theme={darkTheme}>
       <div className="perk-row-1">
-        <div className="perk-card">
+        <span className="perk-card">
           <PerkCard {...survivorPerk1} />
           <FormControl sx={{ minWidth: 120 }} size="small" variant="standard">
             <InputLabel id="perk1">select</InputLabel>
@@ -102,8 +102,8 @@ export default function SurvivorRandomizer() {
               ))}
             </Select>
           </FormControl>
-        </div>
-        <div className="perk-card">
+        </span>
+        <span className="perk-card">
           <PerkCard {...survivorPerk2} />
           <FormControl sx={{ minWidth: 120 }} size="small" variant="standard">
             <InputLabel id="perk2">select</InputLabel>
@@ -119,10 +119,10 @@ export default function SurvivorRandomizer() {
               ))}
             </Select>
           </FormControl>
-        </div>
+        </span>
       </div>
       <div className="perk-row-2">
-        <div className="perk-card">
+        <span className="perk-card">
           <PerkCard {...survivorPerk3} />
           <FormControl sx={{ minWidth: 120 }} size="small" variant="standard">
             <InputLabel id="perk3">select</InputLabel>
@@ -138,8 +138,8 @@ export default function SurvivorRandomizer() {
               ))}
             </Select>
           </FormControl>
-        </div>
-        <div className="perk-card">
+        </span>
+        <span className="perk-card">
           <PerkCard {...survivorPerk4} />
           <FormControl sx={{ minWidth: 120 }} size="small" variant="standard">
             <InputLabel id="perk4">select</InputLabel>
@@ -155,11 +155,11 @@ export default function SurvivorRandomizer() {
               ))}
             </Select>
           </FormControl>
-        </div>
+        </span>
       </div>
       <div className="controls-container">
         <button className="controls" onClick={handleSubmit}>
-          Random
+          Roulette
         </button>
         {user.id ? (
           <>

@@ -215,7 +215,7 @@ export default function KillerRandomizer() {
       )}
       <div className="controls-container">
         <button className="controls" onClick={handleSubmit}>
-          Random
+          Roulette
         </button>
         {user.id ? (
           <>
