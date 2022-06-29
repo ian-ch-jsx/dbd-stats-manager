@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import { getKillerStatsByUserId, getSurvivorStatsByUserId } from '../../services/stats';
 import Auth from '../Auth/Auth';
@@ -25,35 +26,14 @@ export default function Profile({ isKiller = false }) {
   return (
     <div className="stats-container">
       {user.id ? (
-        <>
-          {isKiller ? (
-            <span>
-              <h1>Killer (by perk)</h1>
-              <p>
-                {topKiller.map((perk) => (
-                  <>
-                    <h2>{perk.perk_id.name}</h2>
-                    <p>wins: {perk.wins}</p>
-                    <p>losses: {perk.losses}</p>
-                  </>
-                ))}
-              </p>
-            </span>
-          ) : (
-            <span>
-              <h1>Survivor</h1>
-              <p>
-                {topSurvivor.map((perk) => (
-                  <>
-                    <h2>{perk.perk_id.name}</h2>
-                    <p>wins: {perk.wins}</p>
-                    <p>losses: {perk.losses}</p>
-                  </>
-                ))}
-              </p>
-            </span>
-          )}
-        </>
+        <div className="home-container">
+          <button>
+            <Link to="/stats/survivor">Survivor Statistics</Link>
+          </button>
+          <button>
+            <Link to="/stats/killer">Killer Statistics</Link>
+          </button>
+        </div>
       ) : (
         <Auth />
       )}

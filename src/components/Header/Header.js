@@ -17,7 +17,7 @@ export default function Header() {
   const message = user.id ? (
     <>
       <button>
-        <Link to="/profile">Your Stats</Link>
+        <Link to="/stats">Your Stats</Link>
       </button>
       | <button onClick={handleLogout}>Sign Out</button>
     </>
