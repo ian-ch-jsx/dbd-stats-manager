@@ -1,9 +1,50 @@
 .stats-container {
   display: flex;
   margin: auto;
-  justify-content: center;
 }
 
-.stats-container span {
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: center;
   padding: 50px;
+}
+
+.card {
+  margin: 20px;
+  background-color: #121212;
+  padding: 15px;
+  width: 160px;
+}
+
+.card p {
+  font-size: 1rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+.tabs {
+  display: flex;
+  margin: auto;
+  justify-content: space-evenly;
+  width: 300px;
+  align-items: baseline;
+}
+
+.tabs a {
+  color: #e26c6c;
+  text-transform: uppercase;
+  font-family: 'Roboto';
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  margin: 5px;
+}
+
+.tabs h1 {
+  text-transform: uppercase;
 }

@@ -24,7 +24,7 @@ export async function updateSurvivorStatsById({ perk_id, wins, losses, user_id }
 export async function getKillerStatsByUserId(user) {
   const resp = await client
     .from('killer_stats')
-    .select(`id, wins, losses, perk_id:perk_id ( name ) `)
+    .select(`id, wins, losses, perk_id:perk_id ( name, image ) `)
     .match({ user_id: user })
     .order('wins', { ascending: false });
   return checkError(resp);
