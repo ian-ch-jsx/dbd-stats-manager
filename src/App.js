@@ -5,6 +5,7 @@ import Main from './components/Main/Main';
 import Auth from './views/Auth/Auth';
 import Home from './views/Home/Home';
 import Profile from './views/Profile/Profile';
+import Menu from './views/Profile/Menu';
 function App() {
   return (
     <div className="App">
@@ -26,8 +27,14 @@ function App() {
           <Route exact path="/signin">
             <Auth />
           </Route>
-          <Route exact path="/profile">
+          <Route exact path="/stats/">
+            <Menu />
+          </Route>
+          <Route exact path="/stats/survivor">
             <Profile />
+          </Route>
+          <Route exact path="/stats/killer">
+            <Profile isKiller />
           </Route>
         </Switch>
       </BrowserRouter>

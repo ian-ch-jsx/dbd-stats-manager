@@ -1,7 +1,3 @@
-body {
-  color: #fefefe;
-}
-
 .perk-row-1,
 .perk-row-2 {
   display: flex;
@@ -52,4 +48,27 @@ body {
 
 .killer-select span {
   margin: 10px;
+}
+
+.tabs {
+  display: flex;
+  margin: auto;
+  justify-content: space-evenly;
+  width: 300px;
+  align-items: baseline;
+}
+
+.tabs a {
+  color: #e26c6c;
+  text-transform: uppercase;
+  font-family: 'Roboto';
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  margin: 5px;
+}
+
+.tabs h1 {
+  text-transform: uppercase;
 }

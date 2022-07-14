@@ -4,6 +4,7 @@ import { useUser } from '../../context/UserContext';
 import AuthForm from '../../components/Auth/AuthForm';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import FadeIn from 'react-fade-in/lib/FadeIn';
 import './Auth.css';
 
 export default function Auth({ isSigningUp = false }) {
@@ -35,7 +36,7 @@ export default function Auth({ isSigningUp = false }) {
   };
 
   return (
-    <>
+    <FadeIn>
       <div className="auth-container">
         <h4>
           {isSigningUp ? (
@@ -57,6 +58,6 @@ export default function Auth({ isSigningUp = false }) {
           error={error}
         />
       </div>
-    </>
+    </FadeIn>
   );
 }

@@ -2,6 +2,7 @@ import { useUser } from '../../context/UserContext';
 import { Link } from 'react-router-dom';
 import { signOutUser } from '../../services/auth';
 import { useHistory } from 'react-router-dom';
+import FadeIn from 'react-fade-in/lib/FadeIn';
 import './Header.css';
 
 export default function Header() {
@@ -17,36 +18,40 @@ export default function Header() {
   const message = user.id ? (
     <>
       <button>
-        <Link to="/profile">Your Stats</Link>
+        <Link to="/stats">Your Stats</Link>
       </button>
-      <button onClick={handleLogout}>Sign Out</button>
+      | <button onClick={handleLogout}>Sign Out</button>
     </>
   ) : (
     <>
       <button>
         <Link to="/signin">Sign In</Link>
       </button>
-
+      |
       <button>
         <Link to="/signup">Sign Up</Link>
       </button>
     </>
   );
   return (
-    <>
+    <FadeIn>
       <div className="header">
         <span>
-          <img className="header-image" alt="" src={`${process.env.PUBLIC_URL}/assets/logo.jpg`} />
+          <button>
+            <Link to="/killer">Killer </Link>
+          </button>
+          |
+          <button>
+            <Link to="/survivor">Survivor </Link>
+          </button>
         </span>
 
         <h1>
           <Link to="/">Dead by Daylight Perk Stats</Link>
         </h1>
 
-        <span>
-          <h2>{message}</h2>
-        </span>
+        <span>{message}</span>
       </div>
-    </>
+    </FadeIn>
   );
 }
