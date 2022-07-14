@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import { getKillerStatsByUserId, getSurvivorStatsByUserId } from '../../services/stats';
 import Auth from '../Auth/Auth';
+import FadeIn from 'react-fade-in/lib/FadeIn';
 import './Profile.css';
 
 export default function Profile({ isKiller = false }) {
@@ -24,19 +25,21 @@ export default function Profile({ isKiller = false }) {
 
   if (loading) return 'loading...';
   return (
-    <div className="stats-container">
-      {user.id ? (
-        <div className="home-container">
-          <button>
-            <Link to="/stats/survivor">Survivor Statistics</Link>
-          </button>
-          <button>
-            <Link to="/stats/killer">Killer Statistics</Link>
-          </button>
-        </div>
-      ) : (
-        <Auth />
-      )}
-    </div>
+    <FadeIn>
+      <div className="stats-container">
+        {user.id ? (
+          <div className="home-container">
+            <button>
+              <Link to="/stats/survivor">Survivor Statistics</Link>
+            </button>
+            <button>
+              <Link to="/stats/killer">Killer Statistics</Link>
+            </button>
+          </div>
+        ) : (
+          <Auth />
+        )}
+      </div>
+    </FadeIn>
   );
 }

@@ -2,6 +2,7 @@ import { useUser } from '../../context/UserContext';
 import { Link } from 'react-router-dom';
 import { signOutUser } from '../../services/auth';
 import { useHistory } from 'react-router-dom';
+import FadeIn from 'react-fade-in/lib/FadeIn';
 import './Header.css';
 
 export default function Header() {
@@ -33,7 +34,7 @@ export default function Header() {
     </>
   );
   return (
-    <>
+    <FadeIn>
       <div className="header">
         <span>
           <button>
@@ -51,6 +52,6 @@ export default function Header() {
 
         <span>{message}</span>
       </div>
-    </>
+    </FadeIn>
   );
 }
