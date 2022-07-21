@@ -42,7 +42,6 @@ export default function Profile({ isKiller = false }) {
                   {topKiller.map((perk) => (
                     <span className="card" key={uuid()}>
                       <h2>{perk.perk_id.name}</h2>
-
                       <p>wins: {perk.wins}</p>
                       <p>losses: {perk.losses}</p>
                     </span>
@@ -61,7 +60,6 @@ export default function Profile({ isKiller = false }) {
                   {topSurvivor.map((perk) => (
                     <span className="card" key={uuid()}>
                       <h2>{perk.perk_id.name}</h2>
-
                       <p>wins: {perk.wins}</p>
                       <p>losses: {perk.losses}</p>
                     </span>
